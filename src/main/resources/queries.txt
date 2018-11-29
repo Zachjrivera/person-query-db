@@ -1,0 +1,185 @@
+1. INSERT INTO people (last_name,first_name,mobile,birthday)
+VALUES('Smith','John','230-4293','1973-01-23');
+
+1.5 INSERT INTO people (last_name,first_name,mobile,birthday)
+    VALUES('Curly','Fries','230-5360','2018-01-07');
+
+
+2. SELECT * FROM people;
+
+3.UPDATE people
+  SET first_name = 'Tony'
+  WHERE id = 1;
+
+4.SELECT * FROM people;
+
+5.UPDATE people SET mobile = '152-9854' WHERE last_name = 'Smith';
+
+6.UPDATE people SET birthday = '1955-01-25'
+  WHERE last_name = 'Smith'
+  AND id = 4;
+
+7.UPDATE people SET mobile = '333-3333', last_name = 'Johnson'
+  WHERE first_name = 'Noelle' OR first_name = 'Raj';
+  SELECT * FROM people;
+
+8.SELECT * FROM people;
+  SELECT COUNT(homenumber) FROM homes;
+  SELECT homenumber FROM homes WHERE id = 1;
+  SELECT COUNT(*) FROM homes;
+  SELECT COUNT(DISTINCT last_name) FROM people;
+  SELECT  SUM(id), AVG(id) FROM people;
+  SELECT SUM(id) AS sum, AVG(id) AS avg FROM people;
+
+9.SELECT UPPER (first_name), LOWER(last_name) FROM people;
+  SELECT REPLACE(last_name, 'a', '1') FROM people;
+  SELECT last_name FROM people;
+  INSERT INTO people (first_name, last_name, mobile)
+  VALUES ('Otto', 'Von Count', '656-6548');
+  SELECT CONCAT(first_name, last_name) FROM people
+  WHERE last_name = 'Smith';
+  SELECT CONCAT(first_name, ' ', last_name)
+  FROM people
+  WHERE last_name = 'Smith';
+  SELECT CONCAT_WS(' ',first_name, last_name, mobile)
+  FROM people WHERE last_name= 'Smith';
+  SELECT homenumber, LEFT(homenumber, 3), RIGHT(homenumber, 2) FROM homes;
+  SELECT LENGTH(address), CHAR_LENGTH(address) FROM homes;
+
+10. SELECT*FROM people;
+
+11.SELECT first_name, last_name,
+    YEAR(birthday)
+   FROM people
+    WHERE birthday >= '1970-07-06'
+   AND birthday<='1987-07-06';
+
+
+12.SELECT first_name,birthday
+ FROM people
+  WHERE first_name='Thomas' OR first_name='Raj' OR first_name='Sheeri';
+
+.13   SELECT first_name FROM people WHERE RIGHT(first_name,1)='e';
+    SELECT first_name FROM people WHERE first_name LIKE '%j';
+    SELECT first_name FROM people WHERE first_name LIKE '%o%';
+    SELECT first_name FROM people WHERE first_name NOT LIKE '%o%';
+
+.14 SELECT COUNT(*) FROM people;
+
+
+.15  SELECT last_name, COUNT(*) FROM people GROUP BY last_name;
+     SELECT last_name, GROUP_CONCAT(mobile) FROM people GROUP BY last_name;
+     SELECT last_name, GROUP_CONCAT(mobile SEPARATOR ' and ') FROM people GROUP BY last_name;
+     SELECT last_name, GROUP_CONCAT(mobile SEPARATOR ' and ') FROM people GROUP BY last_name  HAVING COUNT(*)>1;
+     SELECT last_name, GROUP_CONCAT(mobile SEPARATOR ' and ') FROM people WHERE last_name != 'Cabral' GROUP BY last_name
+
+.16
+     SELECT first_name, birthday FROM people ORDER BY birthday;
+     SELECT first_name, birthday FROM people ORDER BY birthday DESC;
+     SELECT first_name, last_name FROM people ORDER BY last_name, first_name;
+     SELECT first_name, birthday FROM people ORDER BY birthday DESC LIMIT 3;
+     SELECT first_name, MONTHNAME(birthday) as mon, birthday FROM people ORDER BY MONTH(birthday);
+     SELECT last_name, COUNT(*) FROM  people GROUP BY last_name;
+     SELECT last_name, COUNT(*) FROM  people GROUP BY last_name ORDER BY NULL;
+
+ 17.INSERT INTO people (first_name, last_name, birthday, home_id)
+    VALUES ('John', 'Smith', '1998-04-07', 4),
+    ('Maya', 'Wasserman' , NULL, 4),
+    ('Paul', 'Thompson', '1996-05-27', 1);
+
+
+ 18.DELETE FROM people WHERE first_name='Maya';
+    SELECT * FROM people;
+
+
+19.INSERT INTO people (first_name, last_name, birthday)
+   VALUES ('Eli', 'Kramer', '1984-01-15');
+   SELECT * FROM people;
+   SELECT * FROM homes;
+   SELECT p.first_name, h.address
+   FROM people p
+   INNER JOIN homes h on (p.home_id = h.id);
+   SELECT first_name, last_name
+   FROM people p
+   INNER JOIN homes h on (p.home_id = h.id)
+   WHERE p.HOME_ID = 1;
+   SELECT p.*, h.address, h.homenumber
+   FROM people p
+   INNER JOIN homes h  on (p.home_id = h.id)
+   WHERE p.first_name  LIKE '%e%';
+
+
+   exercise.
+   SELECT p.first_name, h.address, p.birthday
+   FROM people p
+   INNER JOIN homes h on (p.home_id = h.id)
+   WHERE p.birthday IS NOT NULL
+   ORDER BY p.MONTH(birthday);
+
+
+    SELECT *
+    FROM people p
+    INNER JOIN homes h on (p.home_id = h.id);
+
+
+
+    //MOVIES
+
+
+     INSERT INTO MOVIES(TITLE,RUNTIME,GENRE,IMDB_SCORE, RATING)
+        VALUES('Howard the Duck', 110, 'Sci-fi', 4.6, 'PG');
+        SELECT * FROM MOVIES
+
+        INSERT INTO MOVIES(TITLE,RUNTIME,GENRE,IMDB_SCORE, RATING)
+        VALUES('Lavalantula', 83, 'Horror', 4.7, 'TV-14');
+
+        INSERT INTO MOVIES(TITLE,RUNTIME,GENRE,IMDB_SCORE, RATING)
+        VALUES('Starship Troopers', 129, 'Sci-fi', 7.2, 'PG-13');
+
+        INSERT INTO MOVIES(TITLE,RUNTIME,GENRE,IMDB_SCORE, RATING)
+        VALUES('Waltz With Bashir', 90, 'Documentary', 8.0, 'R');
+
+        INSERT INTO MOVIES(TITLE,RUNTIME,GENRE,IMDB_SCORE, RATING)
+        VALUES('Spaceballs', 96, 'Comedy', 7.1, 'PG');
+
+        INSERT INTO MOVIES(TITLE,RUNTIME,GENRE,IMDB_SCORE, RATING)
+        VALUES('Monsters inc.', 92, 'Animation', 8.1, 'G');
+
+        SELECT * FROM MOVIES
+
+
+
+
+
+    SELECT *
+    FROM movies
+    WHERE genre = 'Sci-fi';
+
+
+    SELECT *
+    FROM movies
+    WHERE imdb_score >= 6.5;
+
+    SELECT *
+     FROM movies
+     WHERE rating = 'G'
+      OR RATING = 'PG'
+      AND runtime < 100;
+
+    SELECT genre, AVG(runtime)
+        FROM movies WHERE imdb_score < '7.5'
+        GROUP BY genre;
+
+    UPDATE movies
+    SET rating = 'R'
+    WHERE title = 'Starship Troopers';
+
+    SELECT id, rating
+    FROM movies
+    WHERE genre = 'Horror' OR genre = 'Documentary';
+
+    SELECT rating, AVG(imdb_score), MAX(imdb_score), MIN(imdb_score)
+    FROM movies
+    GROUP BY rating;
+
+
